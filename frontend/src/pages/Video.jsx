@@ -228,7 +228,7 @@ const Video = () => {
           </Content>
         </>
       )}
-      <Recommendation tags={currentVideo.tags} />
+      {/* <Recommendation tags={currentVideo.tags} /> */}
     </Container>
   );
 };

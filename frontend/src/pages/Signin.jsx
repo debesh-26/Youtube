@@ -138,7 +138,7 @@ const Signin = () => {
     <Container>
       <Wrapper>
         <Title>Sign in</Title>
-        <SubTitle>to continue to LamaTube</SubTitle>
+        <SubTitle>to continue to VTube</SubTitle>
         <Input
           placeholder="username"
           onChange={(e) => {

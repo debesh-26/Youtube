@@ -15,7 +15,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import FlagOutlinedIcon from "@mui/icons-material/FlagOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
-import YouTubeIcon from "@mui/icons-material/YouTube";
+import YouTubeIcon from '@mui/icons-material/YouTube';
 import SettingsBrightnessOutlinedIcon from "@mui/icons-material/SettingsBrightnessOutlined";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -28,12 +28,14 @@ const Container = styled.div`
   flex: 1;
   background-color: ${({ theme }) => theme.bgLighter};
   color: ${({ theme }) => theme.text};
-  height: 100vh;
   position: sticky;
   top: 0;
 `;
 const Wrapper = styled.div`
   padding: 1.12rem 1.625rem;
+  position: sticky;
+    top: 0;
+
 `;
 const Logo = styled.div`
   display: flex;
@@ -52,6 +54,7 @@ const Item = styled.div`
   padding: 0.17rem 0rem;
   font-size: 0.87rem;
   font-weight: 500;
+  
   &:hover {
     background-color: ${({ theme }) => theme.soft};
   }

@@ -36,15 +36,15 @@ const Comments = ({ videoId }) => {
 
   const [comments, setComments] = useState([]);
 
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const res = await axios.get(`/comments/${videoId}`);
-        setComments(res.data);
-      } catch (err) {}
-    };
-    fetchComments();
-  }, [videoId]);
+  // useEffect(() => {
+  //   const fetchComments = async () => {
+  //     try {
+  //       const res = await axios.get(`/comments/${videoId}`);
+  //       setComments(res.data);
+  //     } catch (err) {}
+  //   };
+  //   fetchComments();
+  // }, [videoId]);
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
@@ -61,7 +61,7 @@ const Comments = ({ videoId }) => {
   };
   return (
     <Container>
-      <form onSubmit={handleSubmitComment}>
+      <form /*</Container>onSubmit={handleSubmitComment}*/>
       <NewComment>
       {currentUser?(<Avatar src={currentUser.img}/>):(<Avatar src="/img/images.jpg"/>)}
         <Input placeholder="Add a Comment....... " />
