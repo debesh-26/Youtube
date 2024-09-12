@@ -83,7 +83,7 @@ const Signin = () => {
     e.preventDefault();
     dispatch(loginStart());
     try {
-      const res = await axios.post("/auth/login", {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
         name:userNames,
         password:passwords,
       });

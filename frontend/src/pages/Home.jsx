@@ -14,7 +14,7 @@ const Home = ({ type }) => {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const res = await axios.get(`/videos/${type}`);
+      const res = await axios.get(`${process.env.REACT_APP_API_URL}/videos/${type}`);
       setVideos(res.data);
       if (res.statusCode === 401) {
         navigate("/signin");

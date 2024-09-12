@@ -7,9 +7,19 @@ import commentRouter from "./routes/comments.js";
 import authRourter from "./routes/auth.js";
 import cookieParser from "cookie-parser";
 
+import helmet from "helmet";
+import morgan from "morgan";
+
+import cors from "cors";
+
+
 const app = express();
 dotenv.config();
 const port = process.env.PORT || 8000;
+
+
+
+
 // Connect to DB
 const connect = () => {
   mongoose
@@ -25,16 +35,15 @@ const connect = () => {
     });
 };
 
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-  next();
-});
+
 
 //middleware
 app.use(cookieParser());
+app.use(cors());
 app.use(express.json());
+app.use(helmet());
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+app.use(morgan("common"));
 app.use("/api/users", userRouter);
 app.use("/api/videos", videoRouter);
 app.use("/api/comments", commentRouter);

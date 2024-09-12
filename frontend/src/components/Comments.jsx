@@ -50,7 +50,7 @@ const Comments = ({ videoId }) => {
     e.preventDefault();
     const comment = e.target[0].value;
     try {
-      const res = await axios.post("/comments", {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/comments`, {
         comment,
         videoId,
         userId: currentUser._id,

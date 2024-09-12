@@ -8,11 +8,10 @@ import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
 import Comments from "../components/Comments";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { dislike, fetchSuccess, like } from "../redux/videoSlice";
 import { format } from "timeago.js";
 import { subscription } from "../redux/userSlice";
-import Recommendation from "../components/Recommendation";
 import axios from "axios";
 
 const Container = styled.div`
@@ -116,7 +115,6 @@ const VideoFrame = styled.video`
 `;
 
 const Video = () => {
-  const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
   const { currentVideo } = useSelector((state) => state.video);
   const dispatch = useDispatch();
@@ -127,9 +125,9 @@ const Video = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const videoRes = await axios.get(`/videos/find/${path}`);
+        const videoRes = await axios.get(`${process.env.REACT_APP_API_URL}/videos/find/${path}`);
         const channelRes = await axios.get(
-          `/users/find/${videoRes.data.userId}`
+          `${process.env.REACT_APP_API_URL}/users/find/${videoRes.data.userId}`
         );
 
         setChannel(channelRes.data);
@@ -141,7 +139,7 @@ const Video = () => {
 
   const handleLike = async () => {
     try {
-      await axios.put(`/users/like/${currentVideo._id}`);
+      await axios.put(`${process.env.REACT_APP_API_URL}/users/like/${currentVideo._id}`);
       dispatch(like(currentUser._id));
     } catch (err) {
       console.error(err);
@@ -149,7 +147,7 @@ const Video = () => {
   };
   const handleDislike = async () => {
     try {
-      await axios.put(`/users/dislike/${currentVideo._id}`);
+      await axios.put(`${process.env.REACT_APP_API_URL}/users/dislike/${currentVideo._id}`);
       dispatch(dislike(currentUser._id));
     } catch (err) {
       console.log(err);
@@ -159,8 +157,8 @@ const Video = () => {
   const handleSub = async () => {
     try {
       currentUser.subscribedUsers.includes(channel._id)
-        ? await axios.put(`/users/unsub/${channel._id}`)
-        : await axios.put(`/users/sub/${channel._id}`);
+        ? await axios.put(`${process.env.REACT_APP_API_URL}/users/unsub/${channel._id}`)
+        : await axios.put(`${process.env.REACT_APP_API_URL}/users/sub/${channel._id}`);
       dispatch(subscription(channel._id));
     } catch (err) {
       console.error(err); 
